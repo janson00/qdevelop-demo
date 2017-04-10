@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<SQLConfig>
+	<property index="products_log-select-auto" connect="qd_product_center_write" explain="products_log查询">
+	<!--<formatter>
+			<date-formatter result-key="ctime" date-style="yyyy-MM-dd HH:mm:ss"/>
+		</formatter>-->
+		<sql>select uid,plog_id,product_name,action,pid,ctime from products_log where {DYNAMIC}</sql>
+	</property>
+	<property index="products_log-insert-auto" connect="qd_product_center_write" explain="products_log插入">
+		<sql>insert into products_log(uid,product_name,action,pid,ctime) value ($[uid],'$[product_name]','$[action]',$[pid],$[ctime])</sql>
+		<!--<sql>insert other_table(products_log_id) value({products_log.LAST_INSERT_ID})</sql>-->
+	</property>
+	<property index="products_log-update-auto" connect="qd_product_center_write" explain="products_log修改">
+		<sql>update products_log set uid=$[uid],product_name='$[product_name]',action='$[action]',pid=$[pid],ctime=$[ctime] where plog_id=$[plog_id]</sql>
+	</property>
+	<property index="products_log-delete-auto" connect="qd_product_center_write" explain="products_log删除">
+		<sql>delete from products_log where plog_id=$[plog_id]</sql>
+	</property>
+</SQLConfig>

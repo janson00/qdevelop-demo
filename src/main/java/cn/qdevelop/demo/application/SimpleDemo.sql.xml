@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<SQLConfig>
+
+	<property index="simple_product_select" connect="qd_product_center_read"
+		explain="简单查询">
+		<formatter>
+			根据配置文件内的status_dict，对结果集中status进行翻译，生成翻译新结果列"__status"
+			<prop-formatter result-key="status" prop-key="status_dict" />
+			格式化结果集中ctime，时间格式为：yyyy-MM-dd HH:mm
+			<date-formatter result-key="ctime" date-style="yyyy-MM-dd HH:mm" />
+			<date-formatter result-key="dg" date-style="yyyy-MM-dd HH:mm:ss" />
+		</formatter>
+		<sql>select * from products where {DYNAMIC}</sql>
+	</property>
+
+	<property index="simple_product_insert" connect="qd_product_center_write"
+		explain="简单插入">
+		<sql>insert into products(product_name,price,store,dg)
+			value('$[product_name]',$[price],$[store],$[dg])</sql>
+	</property>
+
+	<property index="simple_product_insert_repeat" connect="qd_product_center_write"
+		explain="简单插入">
+		<sql repeat="product_name@price@store">insert into products(product_name,price,store,dg)
+			value('$[product_name]',$[price],$[store],$[dg])</sql>
+	</property>
+
+	<property index="simple_user_insert" connect="qd_user_center"
+		explain="简单插入">
+		<sql>insert into users(user_name,mobile,age)
+			value('$[user_name]',$[mobile],$[age])</sql>
+	</property>
+
+	<property index="simple_product_insert_log" connect="qd_product_center_write"
+		explain="多sql基于上表主键ID插入">
+		<sql>insert into products(product_name,price,store)
+			value('$[product_name]',$[price],$[store])</sql>
+		<sql>insert into products_log(pid,uid,product_name,action)
+			value({products.LAST_INSERT_ID},$[uid],'$[product_name]',$[action])
+		</sql>
+	</property>
+
+	<property index="simple_user_select" connect="qd_user_center"
+		explain="简单查询">
+		<sql>select * from users where {DYNAMIC}</sql>
+	</property>
+
+
+	<property index="product_log_formatter_query" connect="qd_product_center_read"
+		explain="简单查询">
+		<formatter>
+			<key-value-formatter result-key="pid"
+				format-index="simple_product_select" format-key="pid"
+				format-columns="product_name,price,store"></key-value-formatter>
+
+			<key-value-formatter result-key="uid"
+				format-index="simple_user_select" format-key="uid" format-columns="user_name,mobile,age"></key-value-formatter>
+
+		</formatter>
+		<sql>select * from products_log where {DYNAMIC}</sql>
+	</property>
+
+
+
+
+
+</SQLConfig>

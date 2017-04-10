@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<SQLConfig>
+	<property index="SimpleAPIModel-check-exsit" connect="qd_product_center_write"
+		explain="简单查询">
+		<sql>select * from products where product_name='$[product_name]' limit 1</sql>
+	</property>
+
+	<property index="SimpleAPIModel-check-insert" connect="qd_product_center_write"
+		explain="插入新记录并增加log日志">
+		<sql>insert into products(dg,price,store,status,product_name,ctime)
+			value ($[dg],$[price],$[store],1,'$[product_name]',$[ctime])
+		</sql>
+		<sql>insert into products_log(pid,uid,product_name,action)
+			value({products.LAST_INSERT_ID},$[uid],'$[product_name]',$[action])
+		</sql>
+	</property>
+	
+	<property index="SimpleAPIModel-check-update" connect="qd_product_center_write" explain="products修改">
+		<sql>update products set dg=$[dg],price=$[price],store=$[store],status=1,product_name='$[product_name]' where pid=$[pid]</sql>
+		<sql>insert into products_log(pid,uid,product_name,action)
+			value($[pid],$[uid],'$[product_name]',$[action])
+		</sql>
+	</property>
+
+
+</SQLConfig>

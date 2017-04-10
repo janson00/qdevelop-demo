@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database-config>
+	<connect index="qd_product_center_read">
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-url>jdbc:mysql://127.0.0.1:3306/qd_product_center?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull
+		</driver-url>
+		<user-name>root</user-name>
+		<password>janson</password>
+		<min-idle>10</min-idle>
+		<init-idle>10</init-idle>
+		<max-idle>200</max-idle>
+		<max-wait>1000</max-wait>
+		<test-query>select 1</test-query>
+		<test-borrow>false</test-borrow>
+		<test-return>false</test-return>
+		<test-while-idle>true</test-while-idle>
+	</connect>
+	
+	<connect index="qd_product_center_write">
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-url>jdbc:mysql://127.0.0.1:3306/qd_product_center?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull
+		</driver-url>
+		<user-name>root</user-name>
+		<password>janson</password>
+		<min-idle>1</min-idle>
+		<init-idle>1</init-idle>
+		<max-idle>10</max-idle>
+		<max-wait>1000</max-wait>
+		<test-query>select 1</test-query>
+		<test-borrow>false</test-borrow>
+		<test-return>false</test-return>
+		<test-while-idle>true</test-while-idle>
+	</connect>
+	
+	<connect index="qd_order_center">
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-url>jdbc:mysql://127.0.0.1:3306/qd_order_center?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull
+		</driver-url>
+		<user-name>root</user-name>
+		<password>janson</password>
+		<min-idle>1</min-idle>
+		<init-idle>1</init-idle>
+		<max-idle>10</max-idle>
+		<max-wait>1000</max-wait>
+		<test-query>select 1</test-query>
+		<test-borrow>false</test-borrow>
+		<test-return>false</test-return>
+		<test-while-idle>true</test-while-idle>
+	</connect>
+	
+	<connect index="qd_user_center">
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-url>jdbc:mysql://127.0.0.1:3306/qd_user_center?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull
+		</driver-url>
+		<user-name>root</user-name>
+		<password>janson</password>
+		<min-idle>1</min-idle>
+		<init-idle>1</init-idle>
+		<max-idle>10</max-idle>
+		<max-wait>1000</max-wait>
+		<test-query>select 1</test-query>
+		<test-borrow>false</test-borrow>
+		<test-return>false</test-return>
+		<test-while-idle>true</test-while-idle>
+	</connect>
+	
+</database-config>
