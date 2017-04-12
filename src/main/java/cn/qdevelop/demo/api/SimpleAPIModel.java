@@ -1,4 +1,4 @@
-package cn.qdevelop.demo.model;
+package cn.qdevelop.demo.api;
 
 import java.sql.Connection;
 import java.util.Date;

@@ -20,6 +20,16 @@
 	<dependencies>
 		<dependency>
 			<groupId>cn.qdevelop</groupId>
+			<artifactId>qdevelop-common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.qdevelop</groupId>
+			<artifactId>qdevelop-core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.qdevelop</groupId>
 			<artifactId>qdevelop-service</artifactId>
 			<version>1.0.0</version>
 		</dependency>
