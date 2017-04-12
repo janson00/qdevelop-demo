@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<SQLConfig>
+	<property index="products-phone-encrypt-demo" connect="qd_product_center_write"
+		explain="products查询">
+		<formatter>
+			<prop-formatter result-key="status" prop-key="products_status_dict" />
+			<date-formatter result-key="ctime" date-style="yyyy-MM-dd HH:mm:ss" />
+			
+			<!-- 此处直接加上该自定义标签即可 -->
+			<phone-encrypt result-key="phone" />
+			
+		</formatter>
+		<sql>select dg,price,store,status,product_name,pid,ctime,phone from
+			products where {DYNAMIC}</sql>
+	</property>
+
+</SQLConfig>

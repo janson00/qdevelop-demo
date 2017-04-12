@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-formatter>
+
+ 
+	
+	<!--【AOP机制】基于查询结果的结果集处理-->
+	<!--对结果集中的手机号进行中间四位的加密处理-->
+	<result-formatter name="phone-encrypt" class="cn.qdevelop.demo.formatter.PhoneEncryptFormatter">
+		<result-key>当前结果集中手机的列名称</result-key>
+	</result-formatter>
+	
+	
+	
+</data-formatter>
