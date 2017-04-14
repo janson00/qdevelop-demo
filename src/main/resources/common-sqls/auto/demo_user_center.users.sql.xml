@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xml中常用转义符写法： （ &  &amp; ）（ <  &lt; ） （ >  &gt; ）-->
+<SQLConfig>
+	<property index="users-select-auto" connect="qd_user_center" explain="users查询">
+		<!--
+		<formatter>
+			<date-formatter result-key="utime" date-style="yyyy-MM-dd HH:mm:ss"/>
+			<prop-formatter result-key="status" prop-key="users_status_dict"/>
+			<prop-formatter result-key="age" prop-key="users_age_dict"/>
+			<date-formatter result-key="ctime" date-style="yyyy-MM-dd HH:mm:ss"/>
+		</formatter>
+		-->
+		<sql>select uid,utime,user_name,status,age,ctime,mobile from users where {DYNAMIC}</sql>
+	</property>
+
+	<property index="users-insert-auto" connect="qd_user_center" explain="users插入">
+		<sql repeat=""  repeat-concat="^" fetch-zero-err="true">
+		insert into users(utime,user_name,status,age,ctime,mobile) value ($[utime],'$[user_name]',$[status],$[age],$[ctime],'$[mobile]')
+		</sql>
+		<!--<sql>insert other_table(uid) value({users.LAST_INSERT_ID})</sql>-->
+	</property>
+
+	<property index="users-update-auto" connect="qd_user_center" explain="users修改">
+		<sql  repeat=""  repeat-concat="^" fetch-zero-err="true">
+		update users set utime=$[utime],user_name='$[user_name]',status=$[status],age=$[age],ctime=$[ctime],mobile='$[mobile]' where uid=$[uid]
+		</sql>
+	</property>
+
+	<property index="users-delete-auto" connect="qd_user_center" explain="users删除">
+		<sql  repeat="" repeat-concat="^" fetch-zero-err="true">
+		delete from users where uid=$[uid]
+		</sql>
+	</property>
+</SQLConfig>

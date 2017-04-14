@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xml中常用转义符写法： （ &  &amp; ）（ <  &lt; ） （ >  &gt; ）-->
+<SQLConfig>
+	<property index="productsWithUserInfo" connect="qd_product_center_read" explain="products查询">
+		<formatter>
+			<prop-formatter result-key="status" prop-key="products_status_dict"/>
+			<date-formatter result-key="ctime,dg" date-style="yyyy-MM-dd HH:mm:ss"/>
+			<!-- 
+				从userSelect中，根据uid匹配关系，从userSelect结果集中获取字段值，user_name,mobile，status
+				其中status重命名为user_status
+			 -->
+			<key-value-formatter result-key="uid"
+				format-index="userSelect" format-key="uid"
+				format-columns="user_name,mobile,status>user_status"/>
+		</formatter>
+		<sql>select uid,dg,price,store,status,product_name,pid,ctime from products where {DYNAMIC}</sql>
+	</property>
+	
+	<property index="userSelect" connect="qd_user_center" explain="users查询">
+		<formatter>
+			<prop-formatter result-key="status" prop-key="users_status_dict"/>
+			<phone-encrypt result-key="mobile" />
+		</formatter>
+		<sql>select uid,utime,user_name,status,age,ctime,mobile from users where {DYNAMIC}</sql>
+	</property>
+	
+	<property index="changeStatusByProductsUid" connect="qd_product_center_write" explain="products修改">
+		<sql  repeat="uid@status"  repeat-concat="^" fetch-zero-err="true">
+		update products set status=$[status],price=$[price] where uid=$[uid]
+		</sql>
+	</property>
+	
+</SQLConfig>

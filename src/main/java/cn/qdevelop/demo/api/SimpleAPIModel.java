@@ -34,11 +34,17 @@ import cn.qdevelop.service.IService;
 		})
 public class SimpleAPIModel  extends APIControl{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4211364302671228332L;
-
+	
+	@Override
+	public void init(Map<String, String> args) {
+		/**
+		 * 手动指定当前请求的主要执行sql配置
+		 * 执行execute需要提前指定index，否则验证函数就无法根据数据库表字段进行字段类型验证
+		 * **/
+		args.put("index", "SimpleAPIModel-check-exsit");
+	}
+	
 	/**
 	 * 实现一个根据商品名判断，存在则修改库存，不存在则增加商品的实例
 	 * 该实例展示了几点：
@@ -49,12 +55,6 @@ public class SimpleAPIModel  extends APIControl{
 	@Override
 	protected String execute(Map<String, String> args, IOutput output) {
 		DatabaseFactory df = DatabaseFactory.getInstance();
-		args.put("index", "SimpleAPIModel-check-exsit");
-		
-		/**手动根据index再次调用参数根据数据库字段类型的校验，验证不通过可直接返回**/
-		if(!validParameters(args)){
-			return null;
-		}
 		
 		Connection conn = null;
 		Map<String, Object> query = new HashMap<String, Object>();
@@ -113,5 +113,7 @@ public class SimpleAPIModel  extends APIControl{
 		}
 		return null;
 	}
+
+	
 
 }

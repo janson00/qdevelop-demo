@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xml中常用转义符写法： （ &  &amp; ）（ <  &lt; ） （ >  &gt; ）-->
+<SQLConfig>
+	<property index="products-select-auto" connect="qd_product_center_write" explain="products查询">
+		<!--
+		<formatter>
+			<prop-formatter result-key="status" prop-key="products_status_dict"/>
+			<date-formatter result-key="ctime" date-style="yyyy-MM-dd HH:mm:ss"/>
+		</formatter>
+		-->
+		<sql>select uid,dg,price,store,status,product_name,pid,ctime from products where {DYNAMIC}</sql>
+	</property>
+
+	<property index="products-insert-auto" connect="qd_product_center_write" explain="products插入">
+		<sql repeat=""  repeat-concat="^" fetch-zero-err="true">
+		insert into products(uid,dg,price,store,status,product_name,ctime) value ($[uid],$[dg],$[price],$[store],$[status],'$[product_name]',$[ctime])
+		</sql>
+		<!--<sql>insert other_table(pid) value({products.LAST_INSERT_ID})</sql>-->
+	</property>
+
+	<property index="products-update-auto" connect="qd_product_center_write" explain="products修改">
+		<sql  repeat=""  repeat-concat="^" fetch-zero-err="true">
+		update products set uid=$[uid],dg=$[dg],price=$[price],store=$[store],status=$[status],product_name='$[product_name]',ctime=$[ctime] where pid=$[pid]
+		</sql>
+	</property>
+
+	<property index="products-delete-auto" connect="qd_product_center_write" explain="products删除">
+		<sql  repeat="" repeat-concat="^" fetch-zero-err="true">
+		delete from products where pid=$[pid]
+		</sql>
+	</property>
+</SQLConfig>
