@@ -21,13 +21,21 @@
 			<prop-formatter result-key="status" prop-key="users_status_dict"/>
 			<phone-encrypt result-key="mobile" />
 		</formatter>
-		<sql>select uid,utime,user_name,status,age,ctime,mobile from users where {DYNAMIC}</sql>
+		<sql>select uid,utime,user_name,status,age,ctime,mobile,mobile as aaa from users where {DYNAMIC}</sql>
 	</property>
 	
 	<property index="changeStatusByProductsUid" connect="qd_product_center_write" explain="products修改">
 		<sql  repeat="uid@status"  repeat-concat="^" fetch-zero-err="true">
 		update products set status=$[status],price=$[price] where uid=$[uid]
 		</sql>
+	</property>
+	
+	
+	<property index="productInfoMultiSelect" connect="qd_product_center_read" explain="products查询">
+		<formatter>
+			<prop-formatter result-key="status" prop-key="products_status_dict"/>
+		</formatter>
+		<sql>select p.uid,p.price,p.store,p.status,p.product_name,pl.action from products p left join products_log pl on p.pid=pl.pid where p.price &gt; 10 and {DYNAMIC} and pl.uid &lt;&gt; 0</sql>
 	</property>
 	
 </SQLConfig>

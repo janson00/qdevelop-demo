@@ -93,7 +93,7 @@ public class SimpleAPIModel  extends APIControl{
 				r.put("name", "插入");
 			}
 			query.put("dg", System.currentTimeMillis());
-			
+//			conn.setAutoCommit(false);
 			/**自己控制更新操作，不释放链接和查询用的hashmap，需要自己释放**/
 			boolean isSuccess = df.updateDatabaseSelfControl(query, conn);//回写至数据库
 			r.put("success", isSuccess);

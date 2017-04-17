@@ -20,21 +20,23 @@ public class SimpleFileModel extends UploadControl{
 
 	@Override
 	protected String setFileStoreRootPath() {
-		return null;
+		return "/data/upload";
 	}
 
 	@Override
 	protected String[] setFileAllowType() {
-		return null;
+		return new String[]{".csv",".txt"};
 	}
 
 	@Override
 	protected boolean disposeFile(InputStream file, String fileName, String storeName, long size) {
+		
 		return false;
 	}
 
 	@Override
 	protected String execute(Map<String, String> args, String[] storeName, IOutput output) {
+		
 		return null;
 	}
 
