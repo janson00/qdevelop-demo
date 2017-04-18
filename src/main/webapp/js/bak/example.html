@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>企业管理</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/QDevelop/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/QDevelop/themes/qdevelop.css">
+<link rel="stylesheet" type="text/css" href="/QDevelop/themes/icon.css">
+<SCRIPT LANGUAGE="JavaScript">QDevelopDomain = '';</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">none_permissions_buttons = '';</SCRIPT>
+<script src="/QDevelop/jquery.js"></script>
+<script src="/QDevelop/jquery.easyui.js"></script>
+<script src="/QDevelop/easyui-lang-zh_CN.js"></script>
+<script src="/QDevelop/jquery.plugin.js"></script>
+<script src="/QDevelop/prototype.js"></script>
+<script src="/QDevelop/qdevelop.js"></script>
+<script src="/QDevelop/qdevelop.extends.js"></script>
+<script src="/QDevelop/wjUtils.js"></script>
+<body>
+<div id="dataGrid" ></div>
+<div id="view_user_form1">
+	<table class="qdevelop-form">
+		<tr>
+			<th colspan="2" style="text-align:left;font-size:16px;">用户基本信息</th>
+		</tr>
+		<tr>
+			<th>用户id:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="ep_user_id" name="ep_user_id"/>
+			</td>
+		</tr>
+		<tr>
+			<th>登录名:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="loginname" name="loginname"/>
+			</td>
+		</tr>
+		<tr>
+			<th>用户类型:</th>
+			<td>
+				<select id="type" name="type" class="easyui-validatebox">
+					<option value="1">企业用户</option>
+					<option value="2">个人用户</option>
+					<option value="3">管理用户</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>用户类型:</th>
+			<td>
+				<select id="status" name="status" class="easyui-validatebox">
+					<option value="0">停用</option>
+					<option value="1">正常</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>open_id:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="open_id" name="open_id"/>
+			</td>
+		</tr>
+		<tr>
+			<th>头像地址:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="headimgurl" name="headimgurl"/>
+			</td>
+		</tr>
+		<tr>
+			<th>创建时间:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="ctime" name="ctime"/>
+			</td>
+		</tr>
+		<tr>
+			<th>更新时间:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="utime" name="utime"/>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2" style="text-align:left;font-size:16px;">用户证件信息</th>
+		</tr>
+		<tr>
+			<th>证件类型:</th>
+			<td>
+				<select id="passport_type" name="passport_type" class="easyui-validatebox">
+					<option value="1">身份证</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>证件号码:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="passport_no" name="passport_no"/>
+			</td>
+		</tr>
+		<tr>
+			<th>真实姓名:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="real_name" name="real_name"/>
+			</td>
+		</tr>
+		<tr>
+			<th>性别:</th>
+			<td>
+				<select id="gender" name="gender" class="easyui-validatebox">
+					<option value="1">男</option>
+					<option value="2">女</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2" style="text-align:left;font-size:16px;">用户账户信息</th>
+		</tr>
+		<tr>
+			<th>账户状态:</th>
+			<td>
+				<select id="account_status" name="account_status" class="easyui-validatebox">
+					<option value="0">停用</option>
+					<option value="1">正常</option>
+					<option value="2">冻结</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>账户类型:</th>
+			<td>
+				<select id="account_type" name="account_type" class="easyui-validatebox">
+					<option value="1">企业账户</option>
+					<option value="2">个人账户</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>账户金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="account_amount" name="account_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>待入账金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="wait_in_amount" name="wait_in_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>待出账金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="wait_out_amount" name="wait_out_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>返佣金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="rebate_amount" name="rebate_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>待入账返佣金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="wait_in_rebate_amount" name="wait_in_rebate_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>待出账返佣金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="wait_out_rebate_amount" name="wait_out_rebate_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>红包金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="red_packets_amount" name="red_packets_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>待入账红包金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="wait_in_red_packets_amount" name="wait_in_red_packets_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>待出账红包金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="wait_out_red_packets_amount" name="wait_out_red_packets_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>提现金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="cash_amount" name="cash_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>总金额:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="total_amount" name="total_amount"/>
+			</td>
+		</tr>
+		<tr>
+			<th>上次提现时间:</th>
+			<td>
+				<input type="text"  class="easyui-validatebox" id="last_withdraw_time" name="last_withdraw_time"/>
+			</td>
+		</tr>
+	</table>
+</div>
+<div id="userLevelDetail"></div>
+<div id="relationForm">
+	<table class="qdevelop-form">
+		<tr>
+			<th>上级账号</th>
+			<td>
+				<input type="text" id="level1_user_name" name="level1_user_name" class="easyui-validatebox" />
+			</td>
+		</tr>
+		<tr>
+			<th>上级昵称</th>
+			<td>
+				<input type="text" id="__level1_user_name" name="__level1_user_name" class="easyui-validatebox" />
+			</td>
+		</tr>
+	</table>
+</div>
+<script>
+var epUserId = 'null';
+function viewLevelTeam(level, epUserId) {
+	var levelKey = 'eur.level1_user_id';
+	if(level == 2) levelKey = 'eur.level2_user_id';
+	var queryParam={index:'ep_user_relation_level!select',page:1};
+	queryParam[levelKey] = epUserId;
+	$('#userLevelDetail').detailGrid('openGrid',{
+		isDownResult:false,
+		idField:'EP_USER_ID',
+		data:queryParam,
+		columns:[[
+			{field:'EP_USER_ID',title:'用户ID',sortable:false,width:70,hidden:false,align:'center'},
+			{field:'LOGINNAME',title:'登录名',sortable:false,width:100,hidden:false,align:'center'},
+			{field:'NICK_NAME',title:'昵称',sortable:false,width:100,hidden:false,align:'center'},
+			{field:'CTIME',title:'注册时间',sortable:false,width:120,hidden:false,align:'center'}
+		]]
+	});
+}
+
+$(function(){
+	var queryParam = {index:'ep_user!manage_select', order:'ep_user_id asc'};
+	if(epUserId && epUserId != 'null') {
+		queryParam['u.ep_user_id'] = epUserId;
+	}
+	$('#dataGrid').easyGrid({
+		isDownResult:false,
+		data:queryParam,
+		columns:[[
+			{field:'EP_USER_ID',title:'用户ID',sortable:true,width:60,hidden:false,align:'center'}
+			,{field:'LOGINNAME',title:'登录名',sortable:true,width:120,hidden:false,align:'center'}
+			,{field:'TYPE',title:'用户类型',sortable:true,width:120,hidden:false,align:'center'}
+			,{field:'STATUS',title:'状态',sortable:true,width:120,hidden:false,align:'center'}
+			,{field:'REAL_NAME',title:'真实姓名',sortable:true,width:120,hidden:false,align:'center'}
+			,{field:'PASSPORT_TYPE',title:'证件类型',sortable:false,width:120,hidden:false,align:'center'}
+			,{field:'PASSPORT_NO',title:'证件号码',sortable:true,width:180,hidden:false,align:'center'}
+			,{field:'GENDER',title:'性别',sortable:false,width:80,hidden:false,align:'center'}
+			,{field:'BIRTH_DATE',title:'出生日期',sortable:true,width:120,hidden:false,align:'center'}
+			,{field:'PASSPORT_AUDIT_STATUS',title:'证件审核状态',sortable:false,width:120,hidden:false,align:'center'}
+			,{field:'CTIME',title:'创建时间',sortable:false,width:120,hidden:false,align:'center'}
+			,{field:'UTIME',title:'更新时间',sortable:false,width:120,hidden:false,align:'center'}
+		]],
+		buttons:[{
+					text:'查看用户信息',
+					handler:function(data){
+						$('#view_user_form1').easyForm('openData',data,{isQDevelopData:'true',readOnly:'true'});
+					}
+				},{
+					text:'上级查看',
+					iconCls:'icon-041',
+					handler:function(data) {
+						ajaxQuery({
+							data:{index:'ep_user_relation!select',ep_user_id:data['EP_USER_ID']},
+							success:function(relation) {
+								$('#relationForm').easyForm('openData', relation[0], {isQDevelopData:'true',readOnly:'true'});
+							}
+						});
+					}
+				},{
+					text:'1级团队',
+					iconCls:'icon-051',
+					handler:function(data) {
+						viewLevelTeam(1, data['EP_USER_ID']);
+					}
+				},{
+					text:'2级团队',
+					iconCls:'icon-101',
+					handler:function(data) {
+						viewLevelTeam(2, data['EP_USER_ID']);
+					}
+				},{
+					text:'查看报名信息',
+					iconCls:'icon-view',
+					handler:function(data){
+						parent.addTabs("[" + data['REAL_NAME'] + "]报名信息",'/oa/ep_position.epp_apply_view.action?apply_user_id=' + data['EP_USER_ID'],'icon-view','auto'); 
+					}
+				},{
+					text:'查看推荐报名信息',
+					iconCls:'icon-view',
+					handler:function(data){
+						parent.addTabs("推荐人[" + data['REAL_NAME'] + "]推荐报名信息",'/oa/ep_position.epp_apply_view.action?recommend_user_id=' + data['EP_USER_ID'],'icon-view','auto'); 
+					}
+				}
+		],
+		search:{
+			'u.ep_user_id':{title:'用户id'},
+			'loginname':{title:'登录名'},
+			'real_name':{title:'真实姓名'},
+			'passport_no':{title:'证件号码'},
+			'u.status':{title:'状态',type:'select',option:[{text:'停用',value:'0'},{text:'正常',value:'1'}]},
+			'u.type':{title:'类型',type:'select',option:[{text:'企业用户',value:'1'},{text:'个人用户',value:'2'},{text:'管理用户',value:'3'}]},
+			'passport_audit_status':{title:'证件审核状态',type:'select',option:[{text:'待审核',value:'1'},{text:'审核拒绝',value:'4'},{text:'审核通过',value:'9'}]}
+		}
+	});
+	/*表单初始化*/
+	$('#view_user_form1').easyForm({
+		title:'查看用户信息',
+		iconCls:'icon-save',
+		width:1000,
+		height:600,
+		submit:function(data){
+			$('#view_user_form1').easyForm('close');
+		}
+	});
+	
+	$('#relationForm').easyForm({
+		title:'用户上级信息',
+		iconCls:'icon-041',
+		width:400,
+		height:160
+	});
+	
+	$('#userLevelDetail').detailGrid({
+		title:'团队查看',
+		modal:true,
+		width:800
+	});
+});
+</script>
+</body>
+</html>
