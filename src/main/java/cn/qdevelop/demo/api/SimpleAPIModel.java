@@ -16,10 +16,8 @@ import cn.qdevelop.service.IOutput;
 import cn.qdevelop.service.IService;
 
 /**
- * 
  * 自定义接口
  * 			   
- * 
  * @author janson
  *
  */

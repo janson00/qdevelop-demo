@@ -1,7 +1,7 @@
 $(function () {
 	/**
 	*	{
-	*		url:'',
+	*		
 	*		columns:[{field:'EPP_NAME',title:'职位名称',sortable:false,width:180,hidden:false,align:'center'}]	
 	*	}
 	*/
