@@ -3,51 +3,58 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.qdevelop</groupId>
 	<artifactId>qdevelop-demo</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
+
 	<repositories>
 		<repository>
 			<id>central</id>
-			<!--阿里云maven私服，加速下载通用包 -->
+			<!-- 阿里云maven私服，加速下载通用包 -->
 			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>qdevelop</id>
+			<!-- qdevelop私服，可以配置公司私服 -->
+			<url>http://mvn.e-platform.cn/nexus/content/repositories/qdevelop/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>30</updatePolicy>
+			</snapshots>
 		</repository>
 		<repository>
 			<id>e-platform</id>
 			<!--qdevelop私服，可以配置公司私服 -->
 			<url>http://mvn.e-platform.cn/nexus/content/repositories/e-platform/</url>
-			<!-- <releases> <updatePolicy>always</updatePolicy>never,always,interval,daily 
-				<enabled>true</enabled> <checksumPolicy>warn</checksumPolicy>fail,ignore 
-				</releases> <snapshots> <enabled>false</enabled> </snapshots> <layout>default</layout> -->
 		</repository>
 	</repositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<qdevelop.version>1.0.0-SNAPSHOT</qdevelop.version>
 	</properties>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>cn.qdevelop</groupId>
 			<artifactId>qdevelop-common</artifactId>
-			<version>1.0.0</version>
+			<version>${qdevelop.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>cn.qdevelop</groupId>
 			<artifactId>qdevelop-core</artifactId>
-			<version>1.0.0</version>
+			<version>${qdevelop.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>cn.qdevelop</groupId>
 			<artifactId>qdevelop-service</artifactId>
-			<version>1.0.0</version>
+			<version>${qdevelop.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>cn.qdevelop.demo</groupId>
-			<artifactId>qdevelop-demo-module</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
+		<!-- 基于jar包的web模块引用 -->
+		<!-- <dependency> <groupId>cn.qdevelop.demo</groupId> <artifactId>qdevelop-demo-module</artifactId> 
+			<version>${qdevelop.version}</version> </dependency> -->
 	</dependencies>
 
 	<build>
