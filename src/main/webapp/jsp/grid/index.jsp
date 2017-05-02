@@ -52,8 +52,8 @@
 	<div class="control-sidebar-bg"></div>
 </body>
 <jsp:include page="../import-javascript.jsp" flush="true" />
-<script type="text/javascript" src="<%=request.getContextPath()%>/svr/conf/ep_cash_amount_apply_status_map"></script>
-
+<%-- <script type="text/javascript" src="<%=request.getContextPath()%>/svr/conf/ep_cash_amount_apply_status_map"></script>
+ --%>
 <script type="text/javascript">
     $(function () {
     	
@@ -66,20 +66,21 @@
         var table = $("#example").easyGrid({
         	data:{index:'productsWithUserInfo',status:1,order:'price asc'},
         	columns: [
-                      {"field":"product_name",title:'商品名','sortable':false}
+                      {"field":"product_name",title:'商品名','sortable':true}
                       ,{ "field": "price",title:'价格','sortable':true,'createdCell':function (td, cellData, rowData, row, col) {
                     	  $(td).html('<span style="color:green">'+cellData+'</span>');
                       }}
-                      ,{ "field": "store",title:'库存',hidden:true,"formatter": function ( data, type, rowData, meta ) {
+                      ,{ "field": "store",title:'库存',hidden:false,"formatter": function ( data, type, rowData, meta ) {
                     	  //console.log(meta.settings.oAjaxData.columns[meta.col].data);
                           return  data;  
                       }}
                       ,{ "field":"status",title:'状态','sortable':true,hidden:false}
-                      ,{ "field":"user_name",title:'用户名','sortable':false,hidden:false}
+                      ,{ "field":"uid",title:'用户名','sortable':true,hidden:false}
+                      //,{ "field":"user_name",'title':'用户名','sortable':false,hidden:false}
                       ,{ "field":"mobile",title:'手机号','sortable':false,hidden:false}
-                      ,{"field":'pid',title:'操作','createdCell':function (td, cellData, rowData, row, col) {
+/*                       ,{"field":'pid',title:'操作','createdCell':function (td, cellData, rowData, row, col) {
                     	  $(td).html('<input value="del" name="del" type="button"/>');
-                      }}
+                      }} */
                   ]
         	,search:{
         		'product_name':{title:'商品名'},

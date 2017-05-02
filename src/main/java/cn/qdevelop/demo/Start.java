@@ -26,7 +26,11 @@ public class Start {
 
 	public static String getProductName(){
 		StringBuffer str = new StringBuffer();
-		for(int i=0;i<10;i++){
+		int size = r.nextInt(12);
+		if(size<6){
+			size = 5;
+		}
+		for(int i=0;i<size;i++){
 			str.append(strDict[r.nextInt(strDict.length)]);
 		}
 		return str.toString();
@@ -55,9 +59,9 @@ public class Start {
 	/**
 	 * 往数据库内增加数据
 	 */
-	public  static void loadTestData(){
+	public  static void loadTestData(int userNumber,int productNumber){
 		ArrayList<Integer> uids = new ArrayList<Integer>();
-		for(int i=0;i<1000;i++){
+		for(int i=0;i<userNumber;i++){
 			try {
 				Map<String,Object> query = new HashMap<String,Object>();
 				query.put("index", "users-insert-auto");
@@ -80,7 +84,7 @@ public class Start {
 		query.put("index", "SimpleAPIModel-check-insert");
 		try {
 			conn = DatabaseFactory.getInstance().getConnectByQuery(query);
-			for(int i=0;i<10000;i++){
+			for(int i=0;i<productNumber;i++){
 				query.put("product_name", getProductName());
 				query.put("price", getPrice());
 				query.put("store", getStore());
@@ -174,7 +178,7 @@ public class Start {
 		//		QDevelopHelper.createSQLConfig("qd_user_center", "users");
 		
 		//将项目下生成好的文件手动转移至src/main/resources/common-sqls/demo下
-		loadTestData();
+		loadTestData(10,100);
 		
 //		System.out.println(String.valueOf(System.currentTimeMillis()).length());
 
